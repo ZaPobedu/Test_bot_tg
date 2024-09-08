@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кликер</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        #click-button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #click-button:hover {
+            background-color: #45a049;
+        }
+        #counter {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Кликер</h1>
+        <button id="click-button">Нажми на меня!</button>
+        <div id="counter">Кликов: 0</div>
+    </div>
+
+    <script>
+        // Инициализация счётчика кликов
+        let clickCount = 0;
+
+        // Получаем кнопку и блок для счётчика
+        const button = document.getElementById('click-button');
+        const counterDisplay = document.getElementById('counter');
+
+        // Обработчик нажатий на кнопку
+        button.addEventListener('click', function() {
+            clickCount++;  // Увеличиваем счётчик
+            counterDisplay.textContent = 'Кликов: ' + clickCount;  // Обновляем отображение
+        });
+    </script>
+</body>
+</html>
