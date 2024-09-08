@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кнопки с подсчётом нажатий</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .buttons {
+            margin: 20px;
+        }
+        .ratio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buttons">
+        <button onclick="incrementCounter(1)">Кнопка 1</button>
+        <span id="counter1">0</span>
+    </div>
+
+    <div class="buttons">
+        <button onclick="incrementCounter(2)">Кнопка 2</button>
+        <span id="counter2">0</span>
+    </div>
+
+    <div class="ratio">
+        Соотношение (Кнопка 1 / Кнопка 2): <span id="ratio">0</span>
+    </div>
+
+    <script>
+        let count1 = localStorage.getItem('count1') ? parseInt(localStorage.getItem('count1')) : 0;
+        let count2 = localStorage.getItem('count2') ? parseInt(localStorage.getItem('count2')) : 0;
+
+        document.getElementById('counter1').textContent = count1;
+        document.getElementById('counter2').textContent = count2;
+        updateRatio();
+
+        function incrementCounter(button) {
+            if (button === 1) {
+                count1++;
+                localStorage.setItem('count1', count1);
+                document.getElementById('counter1').textContent = count1;
+            } else if (button === 2) {
+                count2++;
+                localStorage.setItem('count2', count2);
+                document.getElementById('counter2').textContent = count2;
+            }
+            updateRatio();
+        }
+
+        function updateRatio() {
+            const ratio = count2 === 0 ? 0 : (count1 / count2).toFixed(2);
+            document.getElementById('ratio').textContent = ratio;
+        }
+    </script>
+
+</body>
+</html>
