@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini App</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .blue { background-color: blue; color: white; }
+        .red { background-color: red; color: white; }
+        .counter { font-size: 24px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Выберите сторону</h1>
+    <button class="button blue" id="blue">Синие</button>
+    <button class="button red" id="red">Красные</button>
+    
+    <div id="info" class="counter" style="display:none;">
+        <p id="team"></p>
+        <p>Очки: <span id="points">10</span></p>
+        <button class="button" id="buyPoints">Докупить очки</button>
+    </div>
+
+    <script>
+        const points = 10;
+        const infoDiv = document.getElementById('info');
+        const teamText = document.getElementById('team');
+        const pointsText = document.getElementById('points');
+        
+        document.getElementById('blue').addEventListener('click', () => {
+            document.body.style.backgroundColor = 'blue';
+            teamText.innerText = 'Вы выбрали: Синие';
+            pointsText.innerText = points;
+            infoDiv.style.display = 'block';
+        });
+
+        document.getElementById('red').addEventListener('click', () => {
+            document.body.style.backgroundColor = 'red';
+            teamText.innerText = 'Вы выбрали: Красные';
+            pointsText.innerText = points;
+            infoDiv.style.display = 'block';
+        });
+
+        document.getElementById('buyPoints').addEventListener('click', () => {
+            let newPoints = prompt("Сколько очков вы хотите купить? (100 очков = 1 доллар)");
+            if (newPoints) {
+                let totalPoints = points + parseInt(newPoints);
+                pointsText.innerText = totalPoints;
+                alert("Вы успешно купили " + newPoints + " очков!");
+            }
+        });
+
+        // Интеграция с Telegram WebApp
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
